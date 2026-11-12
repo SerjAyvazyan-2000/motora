@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MOTORA — автосервис</title>
+  <meta name="description" content="Автосервис: диагностика, ТО, ремонт двигателя, ходовой, тормозов и электрики. Запись онлайн.">
+  <meta name="theme-color" content="#0e0f11">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700;800&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Прелоадер: гаражные ворота ===== -->
+  <div class="garage" aria-hidden="true">
+    <div class="garage__door"></div>
+    <div class="garage__hud">
+      <span class="mono">SYSTEM CHECK</span>
+      <b class="garage__pct">000</b>
+      <span class="garage__bar"><i></i></span>
+    </div>
+  </div>
+
+  <!-- Кастомный курсор -->
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
+  <a class="skip" href="#main">К содержимому</a>
+
+  <!-- ===== Шапка ===== -->
+  <header class="header">
+    <div class="wrap header__in">
+      <a href="#top" class="logo" aria-label="На главную">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle cx="20" cy="20" r="5"/><path d="M20 3v8M20 29v8M3 20h8M29 20h8M8 8l5.5 5.5M26.5 26.5L32 32M32 8l-5.5 5.5M13.5 26.5L8 32"/></svg>
+        </span>
+        <span class="logo__name" data-bind="brand.name"></span>
+      </a>
+      <nav class="nav" aria-label="Меню">
+        <a href="#diag">Услуги</a>
+        <a href="#process">Процесс</a>
+        <a href="#calc">Калькулятор</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div class="header__right">
+        <span class="status" data-open-status><i></i><span>—</span></span>
+        <a class="header__phone mono" data-href="tel" data-bind="contacts.phone"></a>
+        <a href="#booking" class="btn btn--accent btn--sm" data-cursor="Запись"><span>Записаться</span></a>
+        <button class="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav>
+      <a href="#diag"><span class="mono">01</span>Услуги</a>
+      <a href="#process"><span class="mono">02</span>Процесс</a>
+      <a href="#calc"><span class="mono">03</span>Калькулятор</a>
+      <a href="#reviews"><span class="mono">04</span>Отзывы</a>
+      <a href="#booking"><span class="mono">05</span>Запись</a>
+      <a href="#contacts"><span class="mono">06</span>Контакты</a>
+    </nav>
+    <a class="menu__phone" data-href="tel" data-bind="contacts.phone"></a>
+  </div>
+
+  <main id="main">
+
+    <!-- ===== HERO: машина едет со скроллом ===== -->
+    <section class="hero" id="top">
+      <div class="hero__sticky">
+        <div class="hero__grid-bg" aria-hidden="true"></div>
+        <div class="hero__ghost" aria-hidden="true" data-bind="brand.name"></div>
+
+        <div class="wrap hero__content">
+          <div class="hero__left">
+            <p class="tag mono"><i class="blink"></i><span data-bind="hero.tag"></span></p>
+            <h1 class="hero__title">
+              <span class="ln"><span data-bind="hero.title1"></span></span>
+              <span class="ln ln--accent"><span data-bind="hero.title2"></span></span>
+              <span class="ln ln--outline"><span data-bind="hero.title3"></span></span>
+            </h1>
+          </div>
+          <div class="hero__right">
+            <!-- Спидометр -->
+            <div class="gauge" aria-hidden="true">
+              <svg viewBox="0 0 220 220" class="gauge__svg">
+                <path class="gauge__track" d="M40 170 A90 90 0 1 1 180 170"/>
+                <path class="gauge__fill" d="M40 170 A90 90 0 1 1 180 170" pathLength="1"/>
+                <g class="gauge__ticks"></g>
+                <g class="gauge__needle"><line x1="110" y1="110" x2="110" y2="38"/><circle cx="110" cy="110" r="8"/></g>
+              </svg>
+              <div class="gauge__read"><b class="gauge__speed">000</b><span class="mono">км/ч</span></div>
+              <div class="gauge__meta mono"><span>GEAR <b class="gauge__gear">N</b></span><span>RPM <b class="gauge__rpm">0.8</b></span></div>
+            </div>
+
+            <p class="hero__lead" data-bind="hero.lead"></p>
+            <div class="hero__cta">
+              <a href="#booking" class="btn btn--accent magnetic" data-cursor="Поехали"><span>Записаться на диагностику</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a href="#calc" class="btn btn--line magnetic"><span>Рассчитать цену</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Дорога и машина -->
+        <div class="road" aria-hidden="true">
+          <div class="road__lines"></div>
+          <div class="car">
+            <div class="car__shadow"></div>
+            <svg class="car__svg" viewBox="0 0 1000 380">
+              <defs>
+                <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#2a2d33"/><stop offset=".55" stop-color="#17191d"/><stop offset="1" stop-color="#0b0c0e"/>
+                </linearGradient>
+                <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#3b4048"/><stop offset="1" stop-color="#121418"/>
+                </linearGradient>
+                <linearGradient id="streak" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <g class="car__body">
+                <path class="draw car__fillpath" pathLength="1" d="M78 272 C70 248 74 222 92 207 C112 191 150 183 205 176 L272 135 C322 100 362 88 420 86 L560 88 C640 95 700 130 762 172 L880 188 C905 192 920 200 925 215 L933 250 C936 270 925 286 905 286 L832 286 A72 72 0 0 0 690 286 L302 286 A72 72 0 0 0 160 286 L96 286 C86 286 80 280 78 272 Z"/>
+                <path class="draw car__glass" pathLength="1" d="M298 172 L360 127 C392 109 420 104 468 104 L518 104 L518 172 Z"/>
+                <path class="draw car__glass" pathLength="1" d="M538 104 L562 104 C622 108 672 130 724 172 L538 172 Z"/>
+                <path class="car__streak" d="M150 205 L880 205" />
+                <path class="draw car__line" pathLength="1" d="M528 100 L528 284 M300 176 L740 176 M610 210 L650 210 M380 210 L420 210"/>
+                <path class="draw car__line" pathLength="1" d="M205 176 C240 200 250 230 255 250"/>
+                <path class="car__head" d="M872 194 L922 210 L926 228 L880 222 Z"/>
+                <path class="car__tail" d="M84 214 L118 204 L118 232 L80 238 Z"/>
+                <path class="car__beam" d="M926 216 L1000 196 L1000 250 Z"/>
+              </g>
+              <g class="wheel" data-wheel>
+                <circle cx="231" cy="292" r="60" class="wheel__tire"/>
+                <circle cx="231" cy="292" r="40" class="wheel__rim"/>
+                <g class="wheel__spokes"><path d="M231 254 L231 330 M193 292 L269 292 M204 265 L258 319 M258 265 L204 319"/></g>
+                <circle cx="231" cy="292" r="22" class="wheel__disc"/>
+                <path d="M212 271 a28 28 0 0 1 22 -6" class="wheel__caliper"/>
+                <circle cx="231" cy="292" r="7" class="wheel__hub"/>
+              </g>
+              <g class="wheel" data-wheel>
+                <circle cx="761" cy="292" r="60" class="wheel__tire"/>
+                <circle cx="761" cy="292" r="40" class="wheel__rim"/>
+                <g class="wheel__spokes"><path d="M761 254 L761 330 M723 292 L799 292 M734 265 L788 319 M788 265 L734 319"/></g>
+                <circle cx="761" cy="292" r="22" class="wheel__disc"/>
+                <path d="M742 271 a28 28 0 0 1 22 -6" class="wheel__caliper"/>
+                <circle cx="761" cy="292" r="7" class="wheel__hub"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="hero__hud mono" aria-hidden="true">
+          <span>LAT 55.78°N</span><span class="hero__scroll">SCROLL TO DRIVE <i></i></span><span>LON 37.70°E</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Бренды: бегущая строка, реагирует на скорость скролла ===== -->
+    <div class="brands" aria-label="Обслуживаем марки">
+      <div class="brands__track" data-render="brands"></div>
+    </div>
+
+    <!-- ===== Одометр ===== -->
+    <section class="odo sec">
+      <div class="wrap">
+        <div class="odo__grid" data-render="stats"></div>
+      </div>
+    </section>
+
+    <!-- ===== Интерактивная диагностика ===== -->
+    <section class="diag sec" id="diag">
+      <div class="wrap">
+        <div class="head">
+          <p class="kicker mono"><span>[01]</span> Услуги и цены</p>
+          <h2 class="h2 split">Нажмите на узел — <em>покажем цену</em></h2>
+        </div>
+        <div class="diag__grid">
+          <div class="diag__scheme reveal">
+            <div class="scan" aria-hidden="true"></div>
+            <div class="diag__car">
+              <img src="assets/images/car-top.svg" alt="Схема автомобиля, вид сверху" width="900" height="420">
+              <div class="diag__points" data-render="points"></div>
+            </div>
+          </div>
+          <div class="diag__panel reveal" aria-live="polite">
+            <div class="diag__tabs" role="tablist" data-render="systemTabs"></div>
+            <div class="diag__info">
+              <p class="mono diag__code">SYS / <span data-diag="code"></span></p>
+              <h3 data-diag="title"></h3>
+              <p data-diag="text"></p>
+              <ul class="diag__list" data-diag="list"></ul>
+              <a href="#booking" class="btn btn--accent btn--block" data-diag="cta"><span>Записаться на эту услугу</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Процесс: горизонтальный скролл ===== -->
+    <section class="process" id="process">
+      <div class="process__sticky">
+        <div class="wrap process__head">
+          <p class="kicker mono"><span>[02]</span> Как мы работаем</p>
+          <h2 class="h2">От заявки до выдачи — <em>4,5 часа</em></h2>
+          <div class="process__bar"><i></i></div>
+        </div>
+        <div class="process__track" data-render="process"></div>
+      </div>
+    </section>
+
+    <!-- ===== Калькулятор (светлая секция) ===== -->
+    <section class="calc sec sec--light" id="calc">
+      <div class="wrap">
+        <div class="head">
+          <p class="kicker mono"><span>[03]</span> Калькулятор</p>
+          <h2 class="h2 split">Узнайте цену <em>до приезда</em></h2>
+        </div>
+        <div class="calc__grid">
+          <div class="calc__form reveal">
+            <p class="calc__step mono">01 — Тип автомобиля</p>
+            <div class="seg" role="radiogroup" aria-label="Тип автомобиля" data-render="classes"></div>
+            <p class="calc__step mono">02 — Что нужно сделать</p>
+            <div class="checks" data-render="calcServices"></div>
+          </div>
+          <aside class="receipt reveal">
+            <div class="receipt__top mono"><span data-bind="brand.name"></span><span>СМЕТА № <b class="receipt__no"></b></span></div>
+            <ul class="receipt__list"><li class="receipt__empty">Выберите услуги слева</li></ul>
+            <div class="receipt__total"><span class="mono">ИТОГО</span><b><span class="receipt__sum">0</span> ₽</b></div>
+            <p class="receipt__note" data-bind="calculator.note"></p>
+            <a href="#booking" class="btn btn--dark btn--block" data-calc-cta><span>Записаться с этой сметой</span></a>
+            <div class="receipt__zig" aria-hidden="true"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Гарантии: карточки складываются в стопку ===== -->
+    <section class="stack sec" id="why">
+      <div class="wrap">
+        <div class="head">
+          <p class="kicker mono"><span>[04]</span> Почему мы</p>
+          <h2 class="h2 split">Обещания, которые <em>в договоре</em></h2>
+        </div>
+        <div class="stack__list" data-render="guarantees"></div>
+      </div>
+    </section>
+
+    <!-- ===== Отзывы: колода карт ===== -->
+    <section class="reviews sec" id="reviews">
+      <div class="wrap reviews__grid">
+        <div>
+          <p class="kicker mono"><span>[05]</span> Отзывы</p>
+          <h2 class="h2 split">Нас советуют <em>друзьям</em></h2>
+          <p class="muted reviews__hint">Смахните карточку или нажмите кнопку</p>
+          <div class="reviews__ctrl">
+            <button class="round" type="button" data-deck="prev" aria-label="Предыдущий отзыв">←</button>
+            <span class="mono reviews__count">01 / 05</span>
+            <button class="round round--accent" type="button" data-deck="next" aria-label="Следующий отзыв">→</button>
+          </div>
+        </div>
+        <div class="deck" data-render="reviews"></div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq sec" id="faq">
+      <div class="wrap faq__grid">
+        <div>
+          <p class="kicker mono"><span>[06]</span> FAQ</p>
+          <h2 class="h2 split">Частые <em>вопросы</em></h2>
+        </div>
+        <div class="faq__list" data-render="faq"></div>
+      </div>
+    </section>
+
+    <!-- ===== Запись ===== -->
+    <section class="booking sec" id="booking">
+      <div class="booking__lines" aria-hidden="true"></div>
+      <div class="wrap booking__grid">
+        <div class="booking__left">
+          <p class="kicker mono"><span>[07]</span> Онлайн-запись</p>
+          <h2 class="h2 h2--big split">Заводим <em>запись</em></h2>
+          <p class="muted">Перезвоним за 10 минут, подтвердим время и пришлём напоминание в мессенджер.</p>
+          <div class="plate-demo" aria-hidden="true">
+            <div class="plate"><span class="plate__num">А 777 АА</span><span class="plate__reg"><b>77</b><small>RUS</small></span></div>
+          </div>
+        </div>
+        <form class="form reveal" novalidate>
+          <div class="f">
+            <label for="b-name">Имя</label>
+            <input id="b-name" name="name" autocomplete="name" placeholder="Как к вам обращаться" required>
+            <small class="f__err">Укажите имя</small>
+          </div>
+          <div class="f">
+            <label for="b-phone">Телефон</label>
+            <input id="b-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+            <small class="f__err">Проверьте номер</small>
+          </div>
+          <div class="f">
+            <label for="b-car">Марка и модель</label>
+            <input id="b-car" name="car" placeholder="Например, Kia Rio 2019" list="brandList">
+            <datalist id="brandList" data-render="brandOptions"></datalist>
+          </div>
+          <div class="f">
+            <label for="b-plate">Госномер</label>
+            <div class="plate plate--input">
+              <input id="b-plate" name="plate" class="plate__num" placeholder="А000АА" maxlength="9" autocomplete="off">
+              <span class="plate__reg"><input name="region" placeholder="77" maxlength="3" inputmode="numeric" aria-label="Регион"><small>RUS</small></span>
+            </div>
+          </div>
+          <div class="f">
+            <label for="b-service">Услуга</label>
+            <select id="b-service" name="service" data-render="serviceOptions"></select>
+          </div>
+          <div class="f">
+            <label for="b-date">Дата</label>
+            <input id="b-date" name="date" type="date">
+          </div>
+          <div class="f f--full">
+            <label for="b-comment">Комментарий</label>
+            <textarea id="b-comment" name="comment" rows="3" placeholder="Что беспокоит: стук, вибрация, горит лампа…"></textarea>
+          </div>
+          <label class="agree f--full"><input type="checkbox" checked required> <span>Согласен на обработку персональных данных</span></label>
+          <button class="btn btn--accent btn--block f--full ignite" type="submit" data-cursor="Старт">
+            <span class="ignite__txt">Отправить заявку</span>
+            <span class="ignite__fill" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== Контакты ===== -->
+    <section class="contacts sec" id="contacts">
+      <div class="wrap contacts__grid">
+        <div>
+          <p class="kicker mono"><span>[08]</span> Контакты</p>
+          <h2 class="h2 split">Приезжайте <em>в гараж</em></h2>
+          <ul class="clist">
+            <li><span class="mono">Адрес</span><b data-bind="contacts.address"></b><small data-bind="contacts.note"></small></li>
+            <li><span class="mono">Телефон</span><a data-href="tel" data-bind="contacts.phone"></a></li>
+            <li><span class="mono">Почта</span><a data-href="mailto" data-bind="contacts.email"></a></li>
+            <li><span class="mono">Режим</span><div data-render="hours"></div><span class="status status--big" data-open-status><i></i><span>—</span></span></li>
+          </ul>
+          <div class="socials" data-render="socials"></div>
+        </div>
+        <div class="map reveal" data-render="map"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__big" aria-hidden="true" data-render="footerLetters"></div>
+    <div class="wrap footer__row mono">
+      <span>© <span data-year></span> <span data-bind="brand.name"></span></span>
+      <span data-bind="footer.legal"></span>
+      <a data-href-bind="footer.policyUrl">Политика конфиденциальности</a>
+      <button type="button" data-open-cookies>Настройки cookie</button>
+      <a href="#top" class="footer__up">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <a href="#booking" class="fab">Записаться</a>
+
+  <!-- ===== Cookie: «лампа на приборке» ===== -->
+  <div class="cookie" role="dialog" aria-label="Cookie" hidden>
+    <span class="cookie__lamp" aria-hidden="true">
+      <svg viewBox="0 0 48 48"><path d="M8 20h6l4-5h10l3 4h5v4h4v-3h3v14h-3v-3h-4v5h-6l-3 3H17l-4-4H8z"/></svg>
+    </span>
+    <div>
+      <p class="mono cookie__t">CHECK COOKIES</p>
+      <p class="cookie__text"><span data-bind="cookies.text"></span> <a data-href-bind="cookies.policyUrl" data-bind="cookies.policyText"></a></p>
+    </div>
+    <div class="cookie__btns">
+      <button class="btn btn--line btn--sm" type="button" data-cookie="settings">Настроить</button>
+      <button class="btn btn--accent btn--sm" type="button" data-cookie="accept">Принять</button>
+    </div>
+  </div>
+
+  <div class="modal" id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="ckT" hidden>
+    <div class="modal__bg" data-close></div>
+    <div class="modal__box">
+      <button class="modal__x" type="button" data-close aria-label="Закрыть">×</button>
+      <p class="mono kicker"><span>[cookie]</span> настройки</p>
+      <h3 id="ckT">Какие cookie разрешить?</h3>
+      <label class="sw"><input type="checkbox" checked disabled><span class="sw__ui"></span><span><b>Необходимые</b><small>Без них сайт не работает</small></span></label>
+      <label class="sw"><input type="checkbox" data-cookie-type="analytics"><span class="sw__ui"></span><span><b>Аналитика</b><small>Яндекс Метрика, статистика посещений</small></span></label>
+      <label class="sw"><input type="checkbox" data-cookie-type="marketing"><span class="sw__ui"></span><span><b>Маркетинг</b><small>Ретаргетинг и персональные предложения</small></span></label>
+      <div class="modal__btns">
+        <button class="btn btn--line btn--sm" type="button" data-cookie="save">Сохранить</button>
+        <button class="btn btn--accent btn--sm" type="button" data-cookie="accept">Разрешить все</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="okModal" role="dialog" aria-modal="true" aria-labelledby="okT" hidden>
+    <div class="modal__bg" data-close></div>
+    <div class="modal__box ticket">
+      <p class="mono kicker"><span>[OK]</span> заказ-наряд</p>
+      <h3 id="okT">Заявка принята</h3>
+      <dl class="ticket__dl"></dl>
+      <p class="muted ticket__note"></p>
+      <button class="btn btn--accent btn--block" type="button" data-close><span>Отлично</span></button>
+    </div>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

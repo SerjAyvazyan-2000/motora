@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
+  <defs>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2e34"/><stop offset=".5" stop-color="#1b1e22"/><stop offset="1" stop-color="#2a2e34"/></linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a4049"/><stop offset="1" stop-color="#15181c"/></linearGradient>
+    <linearGradient id="hl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff6dc"/><stop offset="1" stop-color="#fff6dc" stop-opacity="0"/></linearGradient>
+  </defs>
+  <!-- колёса -->
+  <g fill="#0a0b0d" stroke="#3c4047" stroke-width="2">
+    <rect x="179" y="45" width="110" height="44" rx="12"/><rect x="638" y="45" width="110" height="44" rx="12"/>
+    <rect x="179" y="331" width="110" height="44" rx="12"/><rect x="638" y="331" width="110" height="44" rx="12"/>
+  </g>
+  <g stroke="#2a2d32" stroke-width="2"><path d="M195 50v34M215 50v34M235 50v34M255 50v34M275 50v34M654 50v34M674 50v34M694 50v34M714 50v34M734 50v34M195 336v34M215 336v34M235 336v34M255 336v34M275 336v34M654 336v34M674 336v34M694 336v34M714 336v34M734 336v34"/></g>
+  <!-- кузов -->
+  <path d="M120 92 C150 72 230 66 330 66 L640 66 C740 66 810 74 838 98 C858 116 862 160 862 210 C862 260 858 304 838 322 C810 346 740 354 640 354 L330 354 C230 354 150 348 120 328 C80 300 58 260 58 210 C58 160 80 120 120 92 Z" fill="url(#b)" stroke="#6b7079" stroke-width="2"/>
+  <!-- капот -->
+  <path d="M96 130 C130 112 200 104 280 104 L280 316 C200 316 130 308 96 290" fill="none" stroke="#4a4f57" stroke-width="1.5"/>
+  <path d="M120 210 L270 210 M130 160 C180 150 230 148 270 150 M130 260 C180 270 230 272 270 270" stroke="#3a3e45" stroke-width="1.5" fill="none"/>
+  <!-- лобовое -->
+  <path d="M300 96 C330 90 360 88 400 88 L400 332 C360 332 330 330 300 324 C286 290 282 250 282 210 C282 170 286 130 300 96 Z" fill="url(#g)" stroke="#6b7079" stroke-width="1.5"/>
+  <!-- крыша -->
+  <rect x="404" y="92" width="250" height="236" rx="26" fill="#121417" stroke="#4a4f57" stroke-width="1.5"/>
+  <path d="M430 120 L630 120 M430 300 L630 300" stroke="#262a30" stroke-width="10" stroke-linecap="round"/>
+  <!-- заднее стекло -->
+  <path d="M660 96 C690 98 714 104 732 112 C744 150 748 180 748 210 C748 240 744 270 732 308 C714 316 690 322 660 324 Z" fill="url(#g)" stroke="#6b7079" stroke-width="1.5"/>
+  <!-- багажник -->
+  <path d="M760 110 C800 116 828 136 840 160 L840 260 C828 284 800 304 760 310" fill="none" stroke="#4a4f57" stroke-width="1.5"/>
+  <!-- зеркала -->
+  <path d="M300 66 L312 40 L344 40 L340 66 Z M300 354 L312 380 L344 380 L340 354 Z" fill="#23272c" stroke="#6b7079" stroke-width="1.5"/>
+  <!-- фары -->
+  <path d="M74 140 C84 118 104 104 128 98 L116 132 Z M74 280 C84 302 104 316 128 322 L116 288 Z" fill="#fff6dc"/>
+  <path d="M74 140 L0 110 L0 180 Z M74 280 L0 240 L0 310 Z" fill="url(#hl)" opacity=".18"/>
+  <!-- задние фонари -->
+  <path d="M846 120 C856 134 860 150 860 166 L848 166 Z M846 300 C856 286 860 270 860 254 L848 254 Z" fill="#ff5b14"/>
+  <!-- двери -->
+  <path d="M520 66 L520 92 M520 328 L520 354 M404 66 L404 92 M404 328 L404 354" stroke="#4a4f57" stroke-width="1.5"/>
+  <!-- блик -->
+  <path d="M140 84 C300 74 600 72 780 82" stroke="#fff" stroke-opacity=".12" stroke-width="3" fill="none"/>
+</svg>
