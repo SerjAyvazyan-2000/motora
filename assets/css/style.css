@@ -576,3 +576,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 900; pointer-even
   .reveal { opacity: 1; transform: none; }
   .split .w > span, .ln > span { transform: none; }
 }
+
+/* скрытый cookie-баннер не должен перехватывать клики */
+.cookie[hidden] { display: none !important; }
+.cookie:not(.on), .cookie:not(.is-on) { pointer-events: none; }
+.cookie.on, .cookie.is-on { pointer-events: auto; }
