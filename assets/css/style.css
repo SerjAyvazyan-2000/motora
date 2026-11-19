@@ -452,7 +452,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 900; pointer-even
 
 /* ---------- Подвал ---------- */
 .footer { border-top: 1px solid var(--line); padding: 50px 0 28px; overflow: hidden; }
-.footer__big { display: flex; justify-content: center; font: 800 clamp(70px, 21vw, 360px)/.8 var(--f-display); letter-spacing: -.06em; margin-bottom: 40px; user-select: none; }
+.footer__big { display: flex; justify-content: center; width: max-content; max-width: none; margin: 0 auto 40px; padding: 0 var(--pad); font: 800 clamp(48px, 14vw, 260px)/.8 var(--f-display); letter-spacing: -.06em; white-space: nowrap; user-select: none; }
 .footer__big span { display: inline-block; transform: translateY(var(--fy, 60%)); opacity: var(--fo, 0); transition: transform 1s var(--ease), opacity 1s; transition-delay: calc(var(--i) * 60ms); }
 .footer__big.in span { --fy: 0; --fo: 1; }
 .footer__big span:nth-child(odd) { color: transparent; -webkit-text-stroke: 1.5px var(--text); }

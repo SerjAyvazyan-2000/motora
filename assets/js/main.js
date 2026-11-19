@@ -560,6 +560,20 @@
     if (!read()) setTimeout(() => { bar.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => bar.classList.add("on"))); }, REDUCED ? 0 : 3200);
   }
 
+  /* ===================== Подвал: название всегда влезает в ширину экрана ===================== */
+  function fitFooter() {
+    const el = $(".footer__big"); if (!el) return;
+    const fit = () => {
+      el.style.fontSize = "";
+      const avail = el.parentElement.clientWidth;
+      const w = el.getBoundingClientRect().width;
+      if (w > avail) el.style.fontSize = (parseFloat(getComputedStyle(el).fontSize) * avail / w * 0.98) + "px";
+    };
+    fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    addEventListener("resize", fit);
+  }
+
   /* ===================== Запуск ===================== */
   document.addEventListener("DOMContentLoaded", () => {
     setup();
@@ -580,6 +594,7 @@
     modals();
     booking();
     cookies();
+    fitFooter();
     runScroll();
   });
 })();
